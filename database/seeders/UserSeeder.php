@@ -23,6 +23,20 @@ class UserSeeder extends Seeder
             'email' => 'carlessanrod@monlau.com',
             'password' => Hash::make('Monlau2021'),
         ]);
+
+        DB::table('users')->insert([
+            'name' => 'Josep',
+            'role' => 'teacher',
+            'email' => 'josepsalrom@monlau.com',
+            'password' => Hash::make('Monlau2021'),
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'Albert',
+            'role' => 'student',
+            'email' => 'albertsorgua@monlau.com',
+            'password' => Hash::make('Monlau2021'),
+        ]);
     }
 }
 

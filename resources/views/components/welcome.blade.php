@@ -7,10 +7,44 @@
     <!-- Contenido -->
     <div class="max-w-4xl w-full bg-white rounded-lg shadow-xl overflow-hidden">
 
-        <!-- Encabezado -->
+        <!-- Solo lo ve el TEACHER-->
+        @if (auth()->user()->role === 'teacher')
         <div class="bg-gray-800 py-8 px-6 text-white">
             <h1 class="text-4xl font-extrabold leading-tight">¡Bienvenido al Portal de Aprendizaje!</h1>
-            <p class="mt-2 text-lg">Accede a recursos educativos innovadores para potenciar tu enseñanza.</p>
+            <p class="mt-2 text-lg">Solo puedes ver las funcionalidades de TEACHER</p>
+        </div>
+
+        <!-- Últimos cursos -->
+        <div class="p-8">
+            <h2 class="text-2xl font-semibold mb-4">Últimos cursos disponibles</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Curso 1 -->
+                <div class="bg-gray-100 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2">Introducción a la Programación</h3>
+                    <p class="text-gray-700 leading-relaxed mb-4">Aprende los conceptos básicos de la programación y desarrolla habilidades fundamentales en el mundo digital.</p>
+                    <a href="#" class="text-blue-600 font-semibold hover:underline">Más información →</a>
+                </div>
+                <!-- Curso 2 -->
+                <div class="bg-gray-100 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2">Diseño de Interfaces de Usuario</h3>
+                    <p class="text-gray-700 leading-relaxed mb-4">Descubre cómo diseñar interfaces de usuario efectivas y atractivas para mejorar la experiencia de los usuarios.</p>
+                    <a href="#" class="text-blue-600 font-semibold hover:underline">Más información →</a>
+                </div>
+                <!-- Curso 3 -->
+                <div class="bg-gray-100 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2">Inteligencia Artificial Aplicada</h3>
+                    <p class="text-gray-700 leading-relaxed mb-4">Explora las aplicaciones prácticas de la inteligencia artificial en diversas industrias y sectores.</p>
+                    <a href="#" class="text-blue-600 font-semibold hover:underline">Más información →</a>
+                </div>
+            </div>
+        </div>
+        @endif
+
+        <!-- Solo lo ve el ALUMNO-->
+        @if (auth()->user()->role === 'student')
+        <div class="bg-gray-800 py-8 px-6 text-white">
+            <h1 class="text-4xl font-extrabold leading-tight">¡Bienvenido al Portal de Aprendizaje!</h1>
+            <p class="mt-2 text-lg">Solo puedes ver las funcionalidades de STUDENT</p>
         </div>
 
         <!-- Información de la escuela -->
@@ -19,19 +53,25 @@
             <p class="text-gray-700 leading-relaxed mb-4">Somos una institución dedicada a ofrecer una educación de calidad que promueva la excelencia académica y el desarrollo integral de nuestros estudiantes.</p>
             <a href="#" class="text-blue-600 font-semibold hover:underline">Conoce más sobre nosotros →</a>
         </div>
+        @endif
 
-        <!-- Gráfico de asistencia de alumnos, solo lo podrá ver el admin-->
+
+        <!-- Solo lo ve el ADMIN-->
         @if (auth()->user()->role === 'admin')
+        <div class="bg-gray-800 py-8 px-6 text-white">
+            <h1 class="text-4xl font-extrabold leading-tight">¡Bienvenido al Portal de Aprendizaje!</h1>
+            <p class="mt-2 text-lg">Solo puedes ver las funcionalidades de ADMIN</p>
+        </div>
+
+
         <div class="bg-gray-200 px-8 py-6">
             <h2 class="text-2xl font-semibold mb-4">Asistencia de Alumnos</h2>
             <img src="https://www.alexiaeducaria.com/wp-content/uploads/video-alexia-portada-vimeo.png" alt="Gráfico de asistencia" class="w-full rounded-lg shadow-lg mb-4">
             <p class="text-gray-700 leading-relaxed">Visualiza la asistencia de los alumnos en tiempo real y analiza tendencias importantes para mejorar la participación y el rendimiento académico.</p>
             <a href="#" class="text-blue-600 font-semibold hover:underline">Ver detalles de la asistencia →</a>
         </div>
-        @endif
-
-        <!-- Últimos cursos -->
-        <div class="p-8">
+         <!-- Últimos cursos -->
+         <div class="p-8">
             <h2 class="text-2xl font-semibold mb-4">Últimos cursos disponibles</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Curso 1 -->
@@ -62,5 +102,22 @@
             <a href="#" class="mt-4 inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg">Regístrate ahora</a>
         </div>
 
+        <!-- Información de la escuela -->
+        <div class="p-8">
+            <h2 class="text-2xl font-semibold mb-4">Sobre nuestra escuela</h2>
+            <p class="text-gray-700 leading-relaxed mb-4">Somos una institución dedicada a ofrecer una educación de calidad que promueva la excelencia académica y el desarrollo integral de nuestros estudiantes.</p>
+            <a href="#" class="text-blue-600 font-semibold hover:underline">Conoce más sobre nosotros →</a>
+        </div>
+        @endif
+
+        
+
+        
+
+        
+
+       
+
     </div>
 </div>
+
