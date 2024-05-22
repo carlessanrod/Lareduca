@@ -12,7 +12,8 @@ class UpdateUser extends ModalComponent
     public int|User $user;
     public $roles, $name, $email, $selectedRole, $password, $password_confirmation;
 
-    public function mount(User $user) {
+    public function mount(User $user)
+    {
         $this->user = $user;
         $this->roles = Role::all();
 
@@ -27,27 +28,25 @@ class UpdateUser extends ModalComponent
             'name' => 'required',
             'email' => ['required', 'email', Rule::unique('users')->ignore($this->user->id)],
             'selectedRole' => 'required',
-            'password' => 'nullable|min:6|same:password_confirmation', 
+            'password' => 'nullable|min:6|same:password_confirmation',
+            'password_confirmation' => 'nullable|same:password'
         ]);
-    
-        if($this->password) {
-            User::where('id', $this->user->id)->update([
-                'name' => $this->name,
-                'email' => $this->email,
-                'role' => $this->selectedRole,
-                'password' => bcrypt($this->password)
-            ]);
-        }else{
-            User::where('id', $this->user->id)->update([
-                'name' => $this->name,
-                'email' => $this->email,
-                'role' => $this->selectedRole,
-            ]);
+
+        $data = [
+            'name' => $this->name,
+            'email' => $this->email,
+            'role' => $this->selectedRole
+        ];
+
+        if ($this->password) {
+            $data['password'] = bcrypt($this->password);
         }
 
-        session()->flash('message', 'User updated successfully.');
+        User::where('id', $this->user->id)->update($data);
+
+        session()->flash('message', 'User updated successfully');
         return redirect()->route('user-management');
-    }    
+    }
 
     public function render()
     {

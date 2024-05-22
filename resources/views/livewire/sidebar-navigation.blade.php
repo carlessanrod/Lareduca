@@ -1,48 +1,68 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.1.0/css/boxicons.min.css">
 <div>
- @if($isTeacher)
-
-    <!-- Opciones para profesores -->
-    <div class="flex flex-col w-64 h-screen bg-gray-800">
-        <div class="flex items
-        -center justify-center h-14 bg-gray-900">
-            <h1 class="text-white
-            text-2xl">Menu</h1>
+    <aside :class="{ 'sm:left-0': !close, 'sm:left-[-16rem]': close }"
+        class="sm:flex sm:flex-col sm:items-center py-10 h-full w-[16rem] fixed top-0 left-[-16rem] sm:left-0 bg-[#4e0808c0] transition-all ease-in-out duration-300">
+        <div class="flex items-center justify-center mb-10">
+            <img src="{{ asset('images/logo.png') }}" alt="logo" class="w-30 h-40">
         </div>
-        <div class="flex flex-col items-start
-
-        justify-start w-full h-full p-4">
-            <a href="{{ route('teacher.dashboard') }}"
-            class="w-full py-2 text-white">Dashboard</a>
-            <a href="{{ route('teacher.courses') }}"
-            class="w-full py-2 text-white">Mis cursos</a>
-            <a href="{{ route('teacher.students') }}"
-            class="w-full py-2 text-white">Mis estudiantes</a>
-            <a href="{{ route('teacher.profile') }}"
-            class="w-full py-2 text-white">Perfil</a>
+        <div class="flex flex-col h-full w-full justify-between font-bold">
+            <ul class="flex flex-col gap-4 justify-center items-start">
+                <a href="{{ route('dashboard') }}"
+                    class="{{ request()->routeIs('dashboard') ? 'text-red-600' : 'text-white hover:text-red-400' }} pl-10">
+                    <li class="py-3 flex items-center gap-2">
+                        <span>
+                            <i class="bx bx-grid text-2xl"></i>
+                        </span>
+                        <span>Dashboard</span>
+                    </li>
+                </a>
+                @if (auth()->user()->isAdmin())
+                    <a href="{{ route('user-management') }}"
+                        class="{{ request()->routeIs('user-management') ? 'text-red-600' : 'text-white hover:text-red-400' }} pl-10">
+                        <li class="py-3 flex items-start gap-2">
+                            <span>
+                                <i class="bx bx-user-detail text-2xl"></i>
+                            </span>
+                            <span>User Management</span>
+                        </li>
+                    </a>
+                @endif
+                @if (auth()->user()->isAdmin() || auth()->user()->isTeacher())
+                    <a href="{{ route('courses') }}"
+                        class="{{ request()->routeIs('course-management') ? 'text-red-600' : 'text-white hover:text-red-400' }} pl-10">
+                        <li class="py-3 flex items-start gap-2">
+                            <span>
+                                <i class="bx bx-book text-2xl"></i>
+                            </span>
+                            <span>Courses Management</span>
+                        </li>
+                    </a>
+                @endif
+            </ul>
+            <ul class="flex flex-col gap-4 justify-center items-start">
+                <a href="{{ route('profile.show') }}"
+                    class="{{ request()->routeIs('profile.show') ? 'text-red-600 white-gradient' : 'text-white hover:text-red-400' }} pl-10">
+                    <li class="py-3 flex items-start gap-2">
+                        <span>
+                            <i class="bx bx-user
+                            text-2xl"></i>
+                        </span>
+                        <span>Settings</span>
+                    </li>
+                </a>
+                <form method="POST" action="{{ route('logout') }}" x-data
+                    class="text-red-400 transform pl-10">
+                    <a href="{{ route('logout') }}" @click.prevent="$root.submit();" class="w-full">
+                        <li class="py-3 flex items-start gap-2">
+                            @csrf
+                            <span>
+                                <i class="bx bx-log-out text-2xl"></i>
+                            </span>
+                            <span>Log Out</span>
+                        </li>
+                    </a>
+                </form>
+            </ul>
         </div>
-    </div>
- @elseif($isAdmin)
- <!-- Opciones para administradores -->
-    <div class="flex flex-col w-64 h-screen bg-gray-800">
-        <div class="flex items
-        -center justify-center h-14 bg-gray-900">
-            <h1 class="text-white
-            text-2xl">Menu</h1>
-        </div>
-        <div class="flex flex-col items-start
-
-        justify-start w-full h-full p-4">
-            <a href="{{ route('admin.dashboard') }}"
-            class="w-full py-2 text-white">Dashboard</a>
-            <a href="{{ route('admin.courses') }}"
-            class="w-full py-2 text-white">Cursos</a>
-            <a href="{{ route('admin.students') }}"
-            class="w-full py-2 text-white">Estudiantes</a>
-            <a href="{{ route('admin.teachers') }}"
-            class="w-full py-2 text-white">Profesores</a>
-            <a href="{{ route('admin.profile') }}"
-            class="w-full py-2 text-white">Perfil</a>
-        </div>
-    </div>
- @endif
+    </aside>
 </div>

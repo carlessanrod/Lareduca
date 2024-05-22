@@ -1,123 +1,21 @@
-<div class="flex items-center justify-center min-h-screen py-12 bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 px-4 sm:px-6 lg:px-8">
-
-    <div class="absolute top-0 right-0 p-4">
-        ¡Hola, {{ auth()->user()->name }}! ({{ auth()->user()->role }})
-    </div>
-
-    <!-- Contenido -->
-    <div class="max-w-4xl w-full bg-white rounded-lg shadow-xl overflow-hidden">
-
-        <!-- Solo lo ve el TEACHER-->
-        @if (auth()->user()->role === 'teacher')
-        <div class="bg-gray-800 py-8 px-6 text-white">
-            <h1 class="text-4xl font-extrabold leading-tight">¡Bienvenido al Portal de Aprendizaje!</h1>
-            <p class="mt-2 text-lg">Solo puedes ver las funcionalidades de TEACHER</p>
-        </div>
-
-        <!-- Últimos cursos -->
-        <div class="p-8">
-            <h2 class="text-2xl font-semibold mb-4">Últimos cursos disponibles</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Curso 1 -->
-                <div class="bg-gray-100 p-6 rounded-lg shadow-lg">
-                    <h3 class="text-xl font-semibold mb-2">Introducción a la Programación</h3>
-                    <p class="text-gray-700 leading-relaxed mb-4">Aprende los conceptos básicos de la programación y desarrolla habilidades fundamentales en el mundo digital.</p>
-                    <a href="#" class="text-blue-600 font-semibold hover:underline">Más información →</a>
-                </div>
-                <!-- Curso 2 -->
-                <div class="bg-gray-100 p-6 rounded-lg shadow-lg">
-                    <h3 class="text-xl font-semibold mb-2">Diseño de Interfaces de Usuario</h3>
-                    <p class="text-gray-700 leading-relaxed mb-4">Descubre cómo diseñar interfaces de usuario efectivas y atractivas para mejorar la experiencia de los usuarios.</p>
-                    <a href="#" class="text-blue-600 font-semibold hover:underline">Más información →</a>
-                </div>
-                <!-- Curso 3 -->
-                <div class="bg-gray-100 p-6 rounded-lg shadow-lg">
-                    <h3 class="text-xl font-semibold mb-2">Inteligencia Artificial Aplicada</h3>
-                    <p class="text-gray-700 leading-relaxed mb-4">Explora las aplicaciones prácticas de la inteligencia artificial en diversas industrias y sectores.</p>
-                    <a href="#" class="text-blue-600 font-semibold hover:underline">Más información →</a>
-                </div>
+@section('title', 'Dashboard')
+<div class="bg-app">
+        <div class="flex justify-center items-center h-screen">
+            <div class="w-full max-w-lg bg-white shadow-md rounded px-10 pt-8 pb-8">
+                <h1 class="text-2xl mb-4">Bienveido a EduNexus</h1>
+                <h2 class="text-lg mb-4">¡Hola, {{ Auth::user()->name }}!</h2> 
+                @if (auth()->user()->isAdmin())
+                    <p class="text-gray-700 text-base">Eres un administrador, puedes crear, editar y eliminar cursos.</p>
+                @elseif(auth()->user()->isTeacher())
+                    <p class="text-gray-700 text-base">Eres un profesor, puedes crear, editar y eliminar lecciones.</p>
+                    @elseif(auth()->user()->isStudent())
+                    <p class="text-gray-700 text-base">Eres un estudiante, puedes inscribirte en los cursos que desees.</p>
+                @endif
+                <br>          
+                <h3 class="text-gray-700 text-base">EduNexus es una plataforma de educación en línea que te permite aprender de manera gratuita y a tu propio ritmo</h3>
+                <br>
+                <p class="text-gray-700 text-base">Para comenzar, selecciona un curso de la lista de la izquierda.</p>
             </div>
-        </div>
-        @endif
-
-        <!-- Solo lo ve el ALUMNO-->
-        @if (auth()->user()->role === 'student')
-        <div class="bg-gray-800 py-8 px-6 text-white">
-            <h1 class="text-4xl font-extrabold leading-tight">¡Bienvenido al Portal de Aprendizaje!</h1>
-            <p class="mt-2 text-lg">Solo puedes ver las funcionalidades de STUDENT</p>
-        </div>
-
-        <!-- Información de la escuela -->
-        <div class="p-8">
-            <h2 class="text-2xl font-semibold mb-4">Sobre nuestra escuela</h2>
-            <p class="text-gray-700 leading-relaxed mb-4">Somos una institución dedicada a ofrecer una educación de calidad que promueva la excelencia académica y el desarrollo integral de nuestros estudiantes.</p>
-            <a href="#" class="text-blue-600 font-semibold hover:underline">Conoce más sobre nosotros →</a>
-        </div>
-        @endif
-
-
-        <!-- Solo lo ve el ADMIN-->
-        @if (auth()->user()->role === 'admin')
-        <div class="bg-gray-800 py-8 px-6 text-white">
-            <h1 class="text-4xl font-extrabold leading-tight">¡Bienvenido al Portal de Aprendizaje!</h1>
-            <p class="mt-2 text-lg">Solo puedes ver las funcionalidades de ADMIN</p>
-        </div>
-
-
-        <div class="bg-gray-200 px-8 py-6">
-            <h2 class="text-2xl font-semibold mb-4">Asistencia de Alumnos</h2>
-            <img src="https://www.alexiaeducaria.com/wp-content/uploads/video-alexia-portada-vimeo.png" alt="Gráfico de asistencia" class="w-full rounded-lg shadow-lg mb-4">
-            <p class="text-gray-700 leading-relaxed">Visualiza la asistencia de los alumnos en tiempo real y analiza tendencias importantes para mejorar la participación y el rendimiento académico.</p>
-            <a href="#" class="text-blue-600 font-semibold hover:underline">Ver detalles de la asistencia →</a>
-        </div>
-         <!-- Últimos cursos -->
-         <div class="p-8">
-            <h2 class="text-2xl font-semibold mb-4">Últimos cursos disponibles</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Curso 1 -->
-                <div class="bg-gray-100 p-6 rounded-lg shadow-lg">
-                    <h3 class="text-xl font-semibold mb-2">Introducción a la Programación</h3>
-                    <p class="text-gray-700 leading-relaxed mb-4">Aprende los conceptos básicos de la programación y desarrolla habilidades fundamentales en el mundo digital.</p>
-                    <a href="#" class="text-blue-600 font-semibold hover:underline">Más información →</a>
-                </div>
-                <!-- Curso 2 -->
-                <div class="bg-gray-100 p-6 rounded-lg shadow-lg">
-                    <h3 class="text-xl font-semibold mb-2">Diseño de Interfaces de Usuario</h3>
-                    <p class="text-gray-700 leading-relaxed mb-4">Descubre cómo diseñar interfaces de usuario efectivas y atractivas para mejorar la experiencia de los usuarios.</p>
-                    <a href="#" class="text-blue-600 font-semibold hover:underline">Más información →</a>
-                </div>
-                <!-- Curso 3 -->
-                <div class="bg-gray-100 p-6 rounded-lg shadow-lg">
-                    <h3 class="text-xl font-semibold mb-2">Inteligencia Artificial Aplicada</h3>
-                    <p class="text-gray-700 leading-relaxed mb-4">Explora las aplicaciones prácticas de la inteligencia artificial en diversas industrias y sectores.</p>
-                    <a href="#" class="text-blue-600 font-semibold hover:underline">Más información →</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Llamado a la acción -->
-        <div class="bg-gray-800 py-6 px-8 text-white">
-            <h2 class="text-2xl font-semibold mb-2">¡Únete a nuestra comunidad educativa hoy mismo!</h2>
-            <p class="text-lg">Descubre nuevas oportunidades de aprendizaje y desarrollo profesional.</p>
-            <a href="#" class="mt-4 inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg">Regístrate ahora</a>
-        </div>
-
-        <!-- Información de la escuela -->
-        <div class="p-8">
-            <h2 class="text-2xl font-semibold mb-4">Sobre nuestra escuela</h2>
-            <p class="text-gray-700 leading-relaxed mb-4">Somos una institución dedicada a ofrecer una educación de calidad que promueva la excelencia académica y el desarrollo integral de nuestros estudiantes.</p>
-            <a href="#" class="text-blue-600 font-semibold hover:underline">Conoce más sobre nosotros →</a>
-        </div>
-        @endif
-
         
-
-        
-
-        
-
-       
-
     </div>
 </div>
-
