@@ -23,7 +23,7 @@ textarea {
 }
 
 .bg-hero-auth {
-    background-image: linear-gradient(rgba(255, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    background-image: linear-gradient(rgba(89, 0, 255, 0.527), rgba(0, 0, 0, 0.5));
     background-position: top;
     background-repeat: no-repeat;
     background-size: auto;

@@ -13,6 +13,15 @@ export default {
 
     theme: {
         extend: {
+            colors: {
+                lilac: {
+                    400: '#D6BCFA',
+                    500: '#B794F4',
+                    600: '#9F7AEA',
+                    700: '#805AD5',
+                    800: '#6B46C1',
+                },
+            },
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },

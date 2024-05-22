@@ -1,8 +1,8 @@
 @section('title', 'User Management')
 
-<div class="py-12">
+<div class="py-12 bg-gray-200 min-h-screen">
     <div class="mx-auto sm:px-6 lg:px-20">
-        <div class="flex flex-col gap-5 overflow-hidden">
+        <div class="flex flex-col gap-5 overflow-hidden bg-white p-6 rounded-lg shadow-md">
 
             <!-- Create user -->
             <div class="flex justify-between w-full">
@@ -11,7 +11,7 @@
                     @livewire('alert-message')
                 @endif
 
-                <x-button-add wire:click="$dispatch('openModal', {component: 'create-user'})">
+                <x-button-add wire:click="$dispatch('openModal', {component: 'create-user'})" class="bg-purple-500 hover:bg-purple-600 text-white">
                     Create User
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"

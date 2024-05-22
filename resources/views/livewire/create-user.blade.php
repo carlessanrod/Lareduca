@@ -1,4 +1,4 @@
-<div class="mx-auto p-4 shadow-lg rounded-lg">
+<div class="mx-auto p-4 shadow-lg rounded-lg bg-purple-100">
     <h2 class="text-2xl font-bold text-center">Create User</h2>
     <form wire:submit.prevent="store" class="gap-5 flex flex-col">
         <article class="flex flex-col gap-2">
@@ -47,7 +47,7 @@
             @enderror
         </article>
 
-        <x-button-add>
+        <x-button-add class="bg-purple-500 hover:bg-purple-600 text-white">
             Create
         </x-button-add>
     </form>

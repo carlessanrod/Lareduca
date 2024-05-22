@@ -1,10 +1,10 @@
 <x-action-section>
     <x-slot name="title">
-        {{ __('Two Factor Authentication') }}
+        <h2 class="text-xl font-semibold text-purple-600">{{ __('Two Factor Authentication') }}</h2>
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Add additional security to your account using two factor authentication.') }}
+        <p class="text-gray-600">{{ __('Add additional security to your account using two factor authentication.') }}</p>
     </x-slot>
 
     <x-slot name="content">
@@ -50,9 +50,9 @@
 
                 @if ($showingConfirmation)
                     <div class="mt-4">
-                        <x-label for="code" value="{{ __('Code') }}" />
+                        <x-label for="code" value="{{ __('Code') }}" class="text-purple-600" />
 
-                        <x-input id="code" type="text" name="code" class="block mt-1 w-1/2" inputmode="numeric" autofocus autocomplete="one-time-code"
+                        <x-input id="code" type="text" name="code" class="block mt-1 w-1/2 border border-purple-200 rounded-md" inputmode="numeric" autofocus autocomplete="one-time-code"
                             wire:model="code"
                             wire:keydown.enter="confirmTwoFactorAuthentication" />
 
@@ -79,7 +79,7 @@
         <div class="mt-5">
             @if (! $this->enabled)
                 <x-confirms-password wire:then="enableTwoFactorAuthentication">
-                    <x-button type="button" wire:loading.attr="disabled">
+                    <x-button type="button" wire:loading.attr="disabled" class="bg-purple-600 hover:bg-purple-700 text-white">
                         {{ __('Enable') }}
                     </x-button>
                 </x-confirms-password>
@@ -92,7 +92,7 @@
                     </x-confirms-password>
                 @elseif ($showingConfirmation)
                     <x-confirms-password wire:then="confirmTwoFactorAuthentication">
-                        <x-button type="button" class="me-3" wire:loading.attr="disabled">
+                        <x-button type="button" class="me-3" wire:loading.attr="disabled" class="bg-purple-600 hover:bg-purple-700 text-white">
                             {{ __('Confirm') }}
                         </x-button>
                     </x-confirms-password>
@@ -106,7 +106,7 @@
 
                 @if ($showingConfirmation)
                     <x-confirms-password wire:then="disableTwoFactorAuthentication">
-                        <x-secondary-button wire:loading.attr="disabled">
+                        <x-secondary-button wire:loading.attr="disabled" class="bg-purple-600 hover:bg-purple-700 text-white">
                             {{ __('Cancel') }}
                         </x-secondary-button>
                     </x-confirms-password>

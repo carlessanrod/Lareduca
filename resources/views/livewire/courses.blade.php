@@ -21,18 +21,18 @@
                             wire:submit.prevent="store"
                         @endif
                         class="space-y-4">
-                        <input type="text" wire:model="title" placeholder="Title" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+                        <input type="text" wire:model="title" placeholder="Title" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-purple-500">
                         @error('title') <span class="text-red-500">{{ $message }}</span> @enderror
-                        <textarea wire:model="description" placeholder="Description" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"></textarea>
+                        <textarea wire:model="description" placeholder="Description" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-purple-500"></textarea>
                         @error('description') <span class="text-red-500">{{ $message }}</span> @enderror
-                        <select wire:model="teachers" multiple class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+                        <select wire:model="teachers" multiple class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-purple-500">
                             @foreach($allTeachers as $teacher)
                                 <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
                             @endforeach
                         </select>
                         @error('teachers') <span class="text-red-500">{{ $message }}</span> @enderror
                         <div class="flex justify-end space-x-4">
-                            <button type="submit" class="px-6 py-2 bg-blue85 text-white rounded-md hover:bg-blue85/70 focus:outline-none focus:bg-blue-600">
+                            <button type="submit" class="px-6 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 focus:outline-none focus:bg-purple-700">
                                 @if($isUpdating)
                                     Update Course
                                 @else
@@ -55,7 +55,7 @@
                                 <div class="flex mt-4 items-center justify-between">
                                     <div class="flex">
                                         @foreach($course->teachers as $teacher)
-                                            <span class="bg-gray-200 text-gray-800 px-2 py-1 rounded-full text-xs mr-2 truncate" title="{{ $teacher->name }}">{{ $teacher->name }}</span>
+                                            <span class="bg-purple-200 text-purple-800 px-2 py-1 rounded-full text-xs mr-2 truncate" title="{{ $teacher->name }}">{{ $teacher->name }}</span>
                                         @endforeach
                                     </div>
                                     <a href="#">
@@ -97,7 +97,7 @@
                                     <div class="flex mt-4 justify-between">
                                         <div class="flex">
                                             @foreach($course->teachers as $teacher)
-                                                <span class="bg-gray-200 text-gray-800 px-2 py-1 rounded-full text-xs mr-2 truncate" title="{{ $teacher->name }}">{{ $teacher->name }}</span>
+                                                <span class="bg-purple-200 text-purple-800 px-2 py-1 rounded-full text-xs mr-2 truncate" title="{{ $teacher->name }}">{{ $teacher->name }}</span>
                                             @endforeach
                                         </div>
                                         <a href="#">
@@ -124,7 +124,7 @@
                                     <div class="flex mt-4 justify-between">
                                         <div class="flex">
                                             @foreach($course->teachers as $teacher)
-                                                <span class="bg-gray-200 text-gray-800 px-2 py-1 rounded-full text-xs mr-2 truncate" title="{{ $teacher->name }}">{{ $teacher->name }}</span>
+                                                <span class="bg-purple-200 text-purple-800 px-2 py-1 rounded-full text-xs mr-2 truncate" title="{{ $teacher->name }}">{{ $teacher->name }}</span>
                                             @endforeach
                                         </div>
                                         <a href="#">

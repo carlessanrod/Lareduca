@@ -1,10 +1,10 @@
 <x-action-section>
     <x-slot name="title">
-        {{ __('Browser Sessions') }}
+        <h2 class="text-xl font-semibold text-purple-600">{{ __('Browser Sessions') }}</h2>
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Manage and log out your active sessions on other browsers and devices.') }}
+        <p class="text-gray-600">{{ __('Manage and log out your active sessions on other browsers and devices.') }}</p>
     </x-slot>
 
     <x-slot name="content">
@@ -52,7 +52,7 @@
         @endif
 
         <div class="flex items-center mt-5">
-            <x-button wire:click="confirmLogout" wire:loading.attr="disabled">
+            <x-button wire:click="confirmLogout" wire:loading.attr="disabled" class="bg-purple-600 hover:bg-purple-700 text-white">
                 {{ __('Log Out Other Browser Sessions') }}
             </x-button>
 
@@ -71,7 +71,7 @@
                 {{ __('Please enter your password to confirm you would like to log out of your other browser sessions across all of your devices.') }}
 
                 <div class="mt-4" x-data="{}" x-on:confirming-logout-other-browser-sessions.window="setTimeout(() => $refs.password.focus(), 250)">
-                    <x-input type="password" class="mt-1 block w-3/4"
+                    <x-input type="password" class="mt-1 block w-3/4 border border-purple-200 rounded-md"
                                 autocomplete="current-password"
                                 placeholder="{{ __('Password') }}"
                                 x-ref="password"
@@ -83,13 +83,14 @@
             </x-slot>
 
             <x-slot name="footer">
-                <x-secondary-button wire:click="$toggle('confirmingLogout')" wire:loading.attr="disabled">
+                <x-secondary-button wire:click="$toggle('confirmingLogout')" wire:loading.attr="disabled" class="text-purple-600">
                     {{ __('Cancel') }}
                 </x-secondary-button>
 
                 <x-button class="ms-3"
                             wire:click="logoutOtherBrowserSessions"
-                            wire:loading.attr="disabled">
+                            wire:loading.attr="disabled"
+                            class="bg-purple-600 hover:bg-purple-700 text-white">
                     {{ __('Log Out Other Browser Sessions') }}
                 </x-button>
             </x-slot>
